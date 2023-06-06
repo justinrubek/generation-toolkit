@@ -1,29 +1,45 @@
 use crate::{
-    commands::{Commands, HelloCommands},
+    commands::{Commands, GptCommands, Oneshot},
     error::Result,
 };
+use chatgpt::prelude::*;
 use clap::Parser;
 
 mod commands;
 mod error;
+mod util;
 
 #[tokio::main]
 async fn main() -> Result<()> {
     tracing_subscriber::fmt::init();
 
+    let openai_key = std::env::var("OPENAI_KEY").expect("OPENAI_KEY not set");
+
     let args = commands::Args::parse();
     match args.command {
-        Commands::Hello(hello) => {
-            let cmd = hello.command;
-            match cmd {
-                HelloCommands::World => {
-                    println!("Hello, world!");
+        Commands::Gpt(gpt) => {
+            let client = ChatGPT::new(openai_key)?;
+
+            match gpt.command {
+                GptCommands::Oneshot(Oneshot { prompt, input, .. }) => {
+                    println!("prompt: {:?}", prompt);
+                    let response = client.send_message(input).await?;
+
+                    println!("response: {:?}", response);
                 }
-                HelloCommands::Name { name } => {
-                    println!("Hello, {}!", name);
+                GptCommands::Conversation => {
+                    todo!()
                 }
             }
         }
+
+        Commands::Util(util) => match util.command {
+            commands::UtilityCommands::GeneratePrompt { repo } => {
+                let generator = util::RepoPromptGenerator::new(repo, vec![]);
+                let prompt = generator.generate().await?;
+                println!("{}", prompt);
+            }
+        },
     }
 
     Ok(())
