@@ -35,9 +35,9 @@ async fn main() -> Result<()> {
 
         Commands::Util(util) => match util.command {
             commands::UtilityCommands::GeneratePrompt { repo } => {
-                let generator = util::RepoPromptGenerator::new(repo, vec![]);
-                let prompt = generator.generate().await?;
-                println!("{}", prompt);
+                let prompt = util::generate_repo_prompt(repo)?;
+
+                print!("{}", prompt);
             }
         },
     }
