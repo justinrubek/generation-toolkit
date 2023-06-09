@@ -34,12 +34,12 @@
     deps-only = craneLib.buildDepsOnly ({} // common-build-args);
 
     packages = {
-      default = packages.cli;
-      cli = craneLib.buildPackage ({
-          pname = "cli";
+      default = packages.gpt-toolkit;
+      gpt-toolkit = craneLib.buildPackage ({
+          pname = "gpt-toolkit";
           cargoArtifacts = deps-only;
-          cargoExtraArgs = "--bin cli";
-          meta.mainProgram = "cli";
+          cargoExtraArgs = "--bin gpt-toolkit";
+          meta.mainProgram = "gpt-toolkit";
         }
         // common-build-args);
 
@@ -72,11 +72,11 @@
     inherit packages checks;
 
     apps = {
-      cli = {
+      gpt-toolkit = {
         type = "app";
-        program = pkgs.lib.getBin self'.packages.cli;
+        program = pkgs.lib.getBin self'.packages.gpt-toolkit;
       };
-      default = apps.cli;
+      default = apps.gpt-toolkit;
     };
 
     legacyPackages = {

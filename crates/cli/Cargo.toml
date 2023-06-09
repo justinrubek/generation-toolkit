@@ -1,5 +1,5 @@
 [package]
-name = "cli"
+name = "gpt-toolkit"
 version = { workspace = true }
 edition = { workspace = true }
 
