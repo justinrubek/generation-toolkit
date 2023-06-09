@@ -23,9 +23,15 @@ async fn main() -> Result<()> {
             match gpt.command {
                 GptCommands::Oneshot(Oneshot { prompt, input, .. }) => {
                     println!("prompt: {:?}", prompt);
-                    let response = client.send_message(input).await?;
+                    let response = if let Some(prompt) = prompt {
+                        let mut conversation = client.new_conversation_directed(prompt);
 
-                    println!("response: {:?}", response);
+                        conversation.send_message(input).await?
+                    } else {
+                        client.send_message(input).await?
+                    };
+
+                    print!("{}", response.message().content);
                 }
                 GptCommands::Conversation => {
                     todo!()
