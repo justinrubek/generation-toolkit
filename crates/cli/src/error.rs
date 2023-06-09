@@ -3,6 +3,9 @@ pub enum Error {
     #[error(transparent)]
     ChatGpt(#[from] chatgpt::err::Error),
     #[error(transparent)]
+    ChatGptConfig(#[from] chatgpt::config::ModelConfigurationBuilderError),
+
+    #[error(transparent)]
     Ignore(#[from] ignore::Error),
     #[error(transparent)]
     Io(#[from] std::io::Error),

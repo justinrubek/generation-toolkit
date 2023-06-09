@@ -1,3 +1,33 @@
+use chatgpt::config::ChatGPTEngine;
+
+#[derive(Clone, Debug)]
+pub(crate) enum ChatGptEngine {
+    Gpt35Turbo,
+    Gpt4,
+    Gpt4_32k,
+}
+
+impl From<String> for ChatGptEngine {
+    fn from(s: String) -> Self {
+        match s.as_str() {
+            "gpt3.5-turbo" => Self::Gpt35Turbo,
+            "gpt4" => Self::Gpt4,
+            "gpt4-32k" => Self::Gpt4_32k,
+            _ => panic!("invalid engine"),
+        }
+    }
+}
+
+impl From<ChatGptEngine> for ChatGPTEngine {
+    fn from(engine: ChatGptEngine) -> Self {
+        match engine {
+            ChatGptEngine::Gpt35Turbo => Self::Gpt35Turbo,
+            ChatGptEngine::Gpt4 => Self::Gpt4,
+            ChatGptEngine::Gpt4_32k => Self::Gpt4_32k,
+        }
+    }
+}
+
 #[derive(clap::Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 pub(crate) struct Args {
@@ -16,6 +46,10 @@ pub(crate) enum Commands {
 pub(crate) struct Gpt {
     #[clap(subcommand)]
     pub command: GptCommands,
+
+    /// Which model to use.
+    #[clap(long, short, default_value = "gpt3.5-turbo")]
+    pub engine: ChatGptEngine,
 }
 
 #[derive(clap::Subcommand, Debug)]

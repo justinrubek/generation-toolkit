@@ -18,7 +18,11 @@ async fn main() -> Result<()> {
     let args = commands::Args::parse();
     match args.command {
         Commands::Gpt(gpt) => {
-            let client = ChatGPT::new(openai_key)?;
+            let chatgpt_config = ModelConfigurationBuilder::default()
+                .engine(gpt.engine)
+                .build()?;
+
+            let client = ChatGPT::new_with_config(openai_key, chatgpt_config)?;
 
             match gpt.command {
                 GptCommands::Oneshot(Oneshot { prompt, input, .. }) => {
