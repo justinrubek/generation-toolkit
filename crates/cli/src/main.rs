@@ -50,6 +50,10 @@ async fn main() -> Result<()> {
                 print!("{}", prompt);
             }
         },
+
+        Commands::StableDiff(stable) => {
+            stable.run().await?;
+        }
     }
 
     Ok(())
