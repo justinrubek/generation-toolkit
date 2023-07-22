@@ -1,4 +1,7 @@
+use crate::commands::stable::StableDiffusion;
 use chatgpt::config::ChatGPTEngine;
+
+pub(crate) mod stable;
 
 #[derive(Clone, Debug)]
 pub(crate) enum ChatGptEngine {
@@ -38,6 +41,7 @@ pub(crate) struct Args {
 #[derive(clap::Subcommand, Debug)]
 pub(crate) enum Commands {
     Gpt(Gpt),
+    StableDiff(StableDiffusion),
     Util(Utility),
 }
 

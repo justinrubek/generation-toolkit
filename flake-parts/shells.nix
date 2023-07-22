@@ -7,7 +7,7 @@
     self',
     ...
   }: let
-    inherit (self'.packages) rust-toolchain;
+    inherit (self'.packages) rust-toolchain python;
     inherit (self'.legacyPackages) cargoExtraPackages ciPackages;
 
     devTools = [
@@ -19,6 +19,7 @@
       # formatting
       self'.packages.treefmt
       # misc
+      python
     ];
   in {
     devShells = {
