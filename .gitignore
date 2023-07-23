@@ -3,3 +3,6 @@ result*
 .direnv
 target
 .pre-commit-config.yaml
+
+sd_final.png
+models
