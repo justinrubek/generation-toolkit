@@ -1,5 +1,5 @@
 [package]
-name = "gpt-toolkit"
+name = "generation-toolkit"
 version = { workspace = true }
 edition = { workspace = true }
 

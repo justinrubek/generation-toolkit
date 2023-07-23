@@ -28,7 +28,7 @@
         ];
       };
 
-      pname = "gpt-playground";
+      pname = "generation-toolkit";
 
       nativeBuildInputs = withExtraPackages [];
       LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath nativeBuildInputs;
@@ -38,12 +38,12 @@
     deps-only = craneLib.buildDepsOnly ({} // common-build-args);
 
     packages = {
-      default = packages.gpt-toolkit;
-      gpt-toolkit = craneLib.buildPackage ({
-          pname = "gpt-toolkit";
+      default = packages.generation-toolkit;
+      generation-toolkit = craneLib.buildPackage ({
+          pname = "generation-toolkit";
           cargoArtifacts = deps-only;
-          cargoExtraArgs = "--bin gpt-toolkit";
-          meta.mainProgram = "gpt-toolkit";
+          cargoExtraArgs = "--bin generation-toolkit";
+          meta.mainProgram = "generation-toolkit";
         }
         // common-build-args);
 
@@ -76,11 +76,11 @@
     inherit packages checks;
 
     apps = {
-      gpt-toolkit = {
+      generation-toolkit = {
         type = "app";
-        program = pkgs.lib.getBin self'.packages.gpt-toolkit;
+        program = pkgs.lib.getBin self'.packages.generation-toolkit;
       };
-      default = apps.gpt-toolkit;
+      default = apps.generation-toolkit;
     };
 
     legacyPackages = {
