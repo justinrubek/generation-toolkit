@@ -41,6 +41,7 @@
         ./flake-parts/ci.nix
 
         ./flake-parts/stablediffusion.nix
+        ./flake-parts/torch.nix
       ];
     };
 }

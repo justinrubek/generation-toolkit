@@ -22,21 +22,9 @@
 
     python = pkgs.python3.withPackages python-packages;
 
-    scripts = {
-      encode_weights = pkgs.writeShellApplication {
-        name = "encode_weights";
-        runtimeInputs = [python];
-        text = ''
-          python ${self}/bin/encode_weights.py "$@"
-        '';
-      };
+    packages = {
+      inherit python;
     };
-
-    packages =
-      {
-        inherit python;
-      }
-      // scripts;
   in {
     inherit packages;
   };

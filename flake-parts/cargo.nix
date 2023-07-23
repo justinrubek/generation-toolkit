@@ -7,10 +7,12 @@
     self',
     ...
   }: let
+    inherit (self'.packages) libtorch;
     # packages required for building the rust packages
     extraPackages = [
       pkgs.pkg-config
-      pkgs.libtorch-bin
+      pkgs.zlib
+      libtorch
     ];
     withExtraPackages = base: base ++ extraPackages;
 
@@ -30,6 +32,7 @@
 
       nativeBuildInputs = withExtraPackages [];
       LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath nativeBuildInputs;
+      LIBTORCH = "${libtorch}";
     };
 
     deps-only = craneLib.buildDepsOnly ({} // common-build-args);
