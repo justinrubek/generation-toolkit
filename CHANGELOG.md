@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [0.2.1](https://github.com/justinrubek/generation-toolkit/compare/0.2.0..0.2.1) - 2023-07-23
+#### Bug Fixes
+- add permissions to github actions - ([f1a73ef](https://github.com/justinrubek/generation-toolkit/commit/f1a73efca6dca2575387a79fbe3334b1277d648c)) - [@justinrubek](https://github.com/justinrubek)
+
+- - -
+
 ## [0.2.0](https://github.com/justinrubek/generation-toolkit/compare/0.1.0..0.2.0) - 2023-07-23
 #### Continuous Integration
 - **(github/actions)** add github release action - ([36cba9f](https://github.com/justinrubek/generation-toolkit/commit/36cba9f451e8a595c3aeae8c11ebb34686f7c82c)) - [@justinrubek](https://github.com/justinrubek)
