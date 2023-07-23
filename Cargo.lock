@@ -533,6 +533,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "generation-toolkit"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "chatgpt_rs",
+ "clap",
+ "diffusers",
+ "ignore",
+ "tch",
+ "thiserror",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "generic-array"
 version = "0.14.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -564,22 +580,6 @@ dependencies = [
  "fnv",
  "log",
  "regex",
-]
-
-[[package]]
-name = "gpt-toolkit"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "chatgpt_rs",
- "clap",
- "diffusers",
- "ignore",
- "tch",
- "thiserror",
- "tokio",
- "tracing",
- "tracing-subscriber",
 ]
 
 [[package]]
